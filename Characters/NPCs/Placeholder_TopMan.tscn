@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://gjtvxxpak0ym"]
+
+[ext_resource type="Script" uid="uid://caq86yioom5j5" path="res://Characters/NPCCharacter.gd" id="1_a724v"]
+[ext_resource type="Texture2D" uid="uid://cen1y5si8ga80" path="res://Characters/Assets/Placeholder/RingMan.png" id="2_iwnhf"]
+
+[node name="PlaceholderTopMan" type="Node2D"]
+script = ExtResource("1_a724v")
+metadata/_custom_type_script = "uid://caq86yioom5j5"
+
+[node name="RingMan" type="Sprite2D" parent="."]
+texture = ExtResource("2_iwnhf")
+centered = false

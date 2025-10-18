@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuu4y7ydpnes5"]
+
+[ext_resource type="Script" uid="uid://cmu257js5gku5" path="res://Utility/Events/Testing/EventTester.gd" id="1_ywe0b"]
+
+[node name="EventTester" type="Node2D"]
+script = ExtResource("1_ywe0b")

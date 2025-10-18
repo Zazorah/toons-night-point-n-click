@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://popp2u4po60n"]
+
+[ext_resource type="Script" uid="uid://dquyv5i470av2" path="res://Rooms/Room.gd" id="1_4i1pp"]
+[ext_resource type="Texture2D" uid="uid://blh4ur4l1djmn" path="res://Rooms/Debug/Hallway/Hallway.png" id="2_aoso1"]
+[ext_resource type="Texture2D" uid="uid://btys25wc8ehlt" path="res://Rooms/Debug/Hallway/Hallway Depth Map.png" id="2_urjif"]
+[ext_resource type="Script" uid="uid://byxjh6sxqw7f8" path="res://Camera.gd" id="4_1rh7x"]
+[ext_resource type="PackedScene" uid="uid://gjtvxxpak0ym" path="res://Characters/NPCs/Placeholder_TopMan.tscn" id="5_ht4j2"]
+
+[node name="Hallway" type="Sprite2D"]
+texture = ExtResource("2_aoso1")
+centered = false
+script = ExtResource("1_4i1pp")
+depth_map = ExtResource("2_urjif")
+metadata/_custom_type_script = "uid://dquyv5i470av2"
+
+[node name="Camera" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("4_1rh7x")
+metadata/_custom_type_script = "uid://byxjh6sxqw7f8"
+
+[node name="PlaceholderTopMan" parent="." instance=ExtResource("5_ht4j2")]
+position = Vector2(882, 389)
