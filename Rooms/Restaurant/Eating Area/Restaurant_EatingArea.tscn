@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1pkium4e4ts2"]
+
+[ext_resource type="Script" uid="uid://dquyv5i470av2" path="res://Rooms/Room.gd" id="1_clhak"]
+[ext_resource type="Texture2D" uid="uid://c0gmmeorwagbf" path="res://Rooms/Restaurant/Eating Area/Restaurant_EatingArea_BG.png" id="1_r1onj"]
+[ext_resource type="Texture2D" uid="uid://sijvrvhrdoq6" path="res://Rooms/Restaurant/Eating Area/Restaurant_EatingArea_DepthMap.png" id="3_5g3me"]
+
+[node name="EatingArea" type="Sprite2D"]
+texture = ExtResource("1_r1onj")
+centered = false
+script = ExtResource("1_clhak")
+depth_map = ExtResource("3_5g3me")
+metadata/_custom_type_script = "uid://dquyv5i470av2"

@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3oscnra288rn"]
+
+[ext_resource type="Script" uid="uid://dquyv5i470av2" path="res://Rooms/Room.gd" id="1_goyl0"]
+[ext_resource type="Texture2D" uid="uid://ch6b6lhobu7yy" path="res://Rooms/Restaurant/Outer/Restaurant_Outer_BG.png" id="1_metn3"]
+[ext_resource type="Texture2D" uid="uid://lqd17d378ur7" path="res://Rooms/Restaurant/Outer/Restaurant_Outer_DepthMap.png" id="3_hn31t"]
+
+[node name="Outer" type="Sprite2D"]
+texture = ExtResource("1_metn3")
+centered = false
+script = ExtResource("1_goyl0")
+depth_map = ExtResource("3_hn31t")
+metadata/_custom_type_script = "uid://dquyv5i470av2"

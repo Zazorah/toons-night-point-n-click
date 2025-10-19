@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dahyr42ct58w2"]
+
+[ext_resource type="Texture2D" uid="uid://d2amag6h8vol8" path="res://Rooms/Restaurant/Kitchen/Restaurant_Kitchen_BG.png" id="1_o2gdj"]
+[ext_resource type="Script" uid="uid://dquyv5i470av2" path="res://Rooms/Room.gd" id="1_ymqju"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jnh3e"]
+load_path = "res://.godot/imported/Restaurant_Kitchen_DepthMap.png-cab6ce53604e7462c29bfdbf3da3cbb8.ctex"
+
+[node name="RestaurantKitchen" type="Sprite2D"]
+texture = ExtResource("1_o2gdj")
+centered = false
+script = ExtResource("1_ymqju")
+depth_map = SubResource("CompressedTexture2D_jnh3e")
+metadata/_custom_type_script = "uid://dquyv5i470av2"
