@@ -3,8 +3,6 @@ extends Sprite2D
 
 ## Node class representing a space that Characters and Entities inhabit.
 
-signal spot_clicked # Emitted when the mouse clicks a spot in the room.
-
 ## State
 const show_debug_depth := true
 
@@ -18,10 +16,12 @@ const show_debug_depth := true
 func _init():
 	centered = false
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("click"):
-		var world_pos = get_viewport().get_camera_2d().get_global_mouse_position()
-		print(get_depth_at_position(world_pos))
+func _ready():
+	ClickManager.click_processed.connect(_handle_click)
+
+func _handle_click(context: ClickContext) -> void:
+	var depth = get_depth_at_position(context.world_position)
+	print(depth)
 
 func get_depth_at_position(pos: Vector2) -> Dictionary:
 	if not depth_map:

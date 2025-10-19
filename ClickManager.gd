@@ -19,5 +19,17 @@ func _unhandled_input(event: InputEvent) -> void:
 				print("Click interrupted by an unskippable event.")
 
 func _process_click() -> void:
-	var world_pos = Vector2(0.0, 0.0) # get_viewport().get_camera_2d().get_global_mouse_position()
-	click_processed.emit(world_pos)
+	click_processed.emit(ClickContext.new(
+		_mouse_get_screen_pos(),
+		_mouse_get_scene_pos()
+	))
+
+func _mouse_get_screen_pos() -> Vector2:
+	return get_viewport().get_mouse_position()
+
+func _mouse_get_scene_pos() -> Vector2:
+	var camera = get_viewport().get_camera_2d()
+	if camera:
+		return camera.get_global_mouse_position()
+	
+	return Vector2(-1.0, -1.0)
