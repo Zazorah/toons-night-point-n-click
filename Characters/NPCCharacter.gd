@@ -16,4 +16,6 @@ func _create_interactable() -> void:
 	add_child(interactable_area)
 
 func _on_click() -> void:
-	print("You clicked on me!")
+	EventManager.add_events([
+		EventShowMessage.new("You clicked on me!")
+	])
