@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="GAME"
+config/name="Toons Night Point n Click"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,11 +19,20 @@ config/icon="res://icon.svg"
 EventManager="*res://EventManager.gd"
 ClickManager="*res://ClickManager.gd"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
 [file_customization]
 
 folder_colors={
 "res://Utility/Events/Testing/": "teal"
 }
+
+[global_group]
+
+Interactables=""
 
 [input]
 

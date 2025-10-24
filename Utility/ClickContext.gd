@@ -6,6 +6,7 @@ extends RefCounted
 
 var screen_position: Vector2
 var world_position: Vector2
+var click_type: String
 
 func _init(_screen_pos, _world_pos) -> void:
 	screen_position = _screen_pos

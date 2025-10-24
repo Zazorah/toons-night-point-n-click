@@ -17,6 +17,7 @@ func _init():
 	centered = false
 
 func _ready():
+	ClickManager.room = self
 	ClickManager.click_processed.connect(_handle_click)
 
 func _handle_click(context: ClickContext) -> void:
@@ -47,6 +48,6 @@ func get_depth_at_position(pos: Vector2) -> Dictionary:
 	}
 
 func _draw():
-	if Engine.is_editor_hint() or OS.is_debug_build():
+	if show_debug_depth and (Engine.is_editor_hint() or OS.is_debug_build()):
 		if depth_map and show_debug_depth:
 			draw_texture(depth_map, position, Color(1, 1, 1, 1))

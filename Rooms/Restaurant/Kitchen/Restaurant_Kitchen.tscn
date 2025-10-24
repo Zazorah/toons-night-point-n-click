@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://dquyv5i470av2" path="res://Rooms/Room.gd" id="1_ymqju"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jnh3e"]
-load_path = "res://.godot/imported/Restaurant_Kitchen_DepthMap.png-cab6ce53604e7462c29bfdbf3da3cbb8.ctex"
 
 [node name="RestaurantKitchen" type="Sprite2D"]
 texture = ExtResource("1_o2gdj")

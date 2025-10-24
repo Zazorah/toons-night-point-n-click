@@ -20,3 +20,6 @@ func _ready() -> void:
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("click"):
 		clicked_on.emit()
+
+func _exit_tree() -> void:
+	pass
