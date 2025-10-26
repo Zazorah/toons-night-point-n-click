@@ -2,14 +2,17 @@ extends Node
 
 ## Manager for UIElement instances.
 
+const CUTSCENE_PLAYER := preload("res://Utility/Cutscene/Player/CutscenePlayer.tscn")
+
 var ui_root: Control
+
+# Specific UI Nodes
+var cutscene_player: CutscenePlayer
 
 func _ready() -> void:
 	# Initialize UI Root
 	ui_root = Control.new()
 	get_tree().root.add_child.call_deferred(ui_root)
-	
-	_initialize_test_ui()
 
 func process_click(click_context: ClickContext) -> bool:
 	for child in ui_root.get_children():
@@ -18,6 +21,18 @@ func process_click(click_context: ClickContext) -> bool:
 			return true
 	
 	return false
+
+func start_cutscene_player() -> CutscenePlayer:
+	if cutscene_player:
+		cutscene_player.queue_free()
+	
+	cutscene_player = CUTSCENE_PLAYER.instantiate() as CutscenePlayer
+	add_child(cutscene_player)
+	
+	return cutscene_player
+
+func stop_cutscene_player() -> void:
+	cutscene_player.do_exit_animation()
 
 func _initialize_test_ui() -> void:
 	var block = UITestSquare.new()

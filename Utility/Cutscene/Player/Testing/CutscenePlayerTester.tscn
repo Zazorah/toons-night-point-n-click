@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://ifabvi4lr3gm"]
+
+[ext_resource type="Script" uid="uid://35lbm31ofr3u" path="res://Utility/Cutscene/Player/Testing/CutscenePlayerTester.gd" id="1_81r4u"]
+[ext_resource type="Script" uid="uid://bpqx5nvsfipju" path="res://Utility/Cutscene/Cutscene.gd" id="2_wvso8"]
+[ext_resource type="Script" uid="uid://mgwcx8yvg7ju" path="res://Utility/Cutscene/CutsceneStep.gd" id="3_aup3l"]
+
+[sub_resource type="Resource" id="Resource_k2g8r"]
+script = ExtResource("3_aup3l")
+character_name = "Chet"
+message = "Hey... How's it going Chets and Chettes!"
+metadata/_custom_type_script = "uid://mgwcx8yvg7ju"
+
+[sub_resource type="Resource" id="Resource_wvso8"]
+script = ExtResource("3_aup3l")
+character_name = "Chet"
+message = "I've been learning a lot about myself recently, you know! You know like.. sexuality and all that, right?"
+metadata/_custom_type_script = "uid://mgwcx8yvg7ju"
+
+[sub_resource type="Resource" id="Resource_aup3l"]
+script = ExtResource("3_aup3l")
+character_name = "Chet"
+message = "I've been thinking... I've finally gotten an idea of what's going on in this ol' head o' mine..."
+metadata/_custom_type_script = "uid://mgwcx8yvg7ju"
+
+[sub_resource type="Resource" id="Resource_ek1ut"]
+script = ExtResource("2_wvso8")
+steps = Array[ExtResource("3_aup3l")]([SubResource("Resource_k2g8r"), SubResource("Resource_wvso8"), SubResource("Resource_aup3l")])
+metadata/_custom_type_script = "uid://bpqx5nvsfipju"
+
+[node name="CutscenePlayerTester" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_81r4u")
+cutscene = SubResource("Resource_ek1ut")

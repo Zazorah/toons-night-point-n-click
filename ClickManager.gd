@@ -16,9 +16,9 @@ var ui: Control = null
 var interactables: Array[InteractableArea] = []
 var room: Room = null
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("click"):
-		click_registered.emit()
+		click_registered.emit()		
 		if not EventManager.currently_executing:
 			_process_click()
 		else:

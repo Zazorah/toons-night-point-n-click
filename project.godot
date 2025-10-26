@@ -29,6 +29,7 @@ window/size/viewport_height=720
 [file_customization]
 
 folder_colors={
+"res://Utility/Cutscene/Player/Testing/": "teal",
 "res://Utility/Events/Testing/": "teal"
 }
 
