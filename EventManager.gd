@@ -49,3 +49,5 @@ func _execute_events() -> void:
 		current_event = null
 		sequence_ended.emit()
 		currently_executing = false
+		
+		print("Event queue is empty.")

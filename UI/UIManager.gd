@@ -27,7 +27,7 @@ func start_cutscene_player() -> CutscenePlayer:
 		cutscene_player.queue_free()
 	
 	cutscene_player = CUTSCENE_PLAYER.instantiate() as CutscenePlayer
-	add_child(cutscene_player)
+	ui_root.add_child(cutscene_player)
 	
 	return cutscene_player
 

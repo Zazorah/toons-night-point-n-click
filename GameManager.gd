@@ -5,8 +5,9 @@ extends Node
 # Global State
 var debug := true # Whether or not we're in the debug state.
 
-# Global Nodes
+# Global Node References
 var camera: Camera
+var player_character: PlayerCharacter
 
 func _ready() -> void:
 	_initialize_camera()

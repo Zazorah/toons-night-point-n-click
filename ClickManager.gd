@@ -5,7 +5,10 @@ extends Node
 # NOTE - A click is 'valid' if it is not interrupting anything.
 
 signal click_registered # Emitted when a click happens, valid or not.
-signal click_processed # Emitted on a valid click with information.
+
+# NOTE - We're emitting more specific signals, so a generic is probably unneeded.
+#	     May reimplement in the future though.
+# signal click_processed # Emitted on a valid click with information.
 
 signal clicked_on_ui # Signal emitted with the element clicked on.
 signal clicked_on_interactable # Signal emitted with the interactable clicked on.
@@ -16,6 +19,8 @@ var ui: Control = null
 var interactables: Array[InteractableArea] = []
 var room: Room = null
 
+# Handle any clicks on the game-window if there is no skippable event
+# currently queued.
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("click"):
 		click_registered.emit()		
@@ -48,7 +53,12 @@ func _process_click() -> void:
 	var _clicked_position = _process_on_room(context)
 	if _process_on_room(context): # Clicked on walkable space in a room
 		print("Clicked in Room! ", _clicked_position.to_string())
-		clicked_in_room.emit(_clicked_position)
+		clicked_in_room.emit(context.world_position)
+		
+		EventManager.add_events([
+			EventPlayerWalkToTarget.new(context.world_position)
+		])
+		
 		return
 	
 	# Clicked on nothing in particular.
