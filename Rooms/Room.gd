@@ -24,10 +24,10 @@ func _handle_click(context: ClickContext) -> void:
 	var depth = get_depth_at_position(context.world_position)
 	print(depth)
 
-func get_depth_at_position(pos: Vector2) -> Dictionary:
+func get_depth_at_position(pos: Vector2) -> RoomDepth:
 	if not depth_map:
 		push_warning("No depth map set for this room.")
-		return { "scale": 1.0, "z_index": 0, "walkable": true }
+		return RoomDepth.new()
 	
 	var img = depth_map.get_image()
 	var tex_size = depth_map.get_size()
@@ -39,15 +39,15 @@ func get_depth_at_position(pos: Vector2) -> Dictionary:
 	var depth_value = pixel.r
 	
 	if pixel.a == 0.0:
-		return { "scale": 1.0, "z_index": 0, "walkable": false }
+		return RoomDepth.new(false)
 	
-	return {
-		"scale": lerp(min_scale, max_scale, depth_value),
-		"z_index": lerp(min_z_index, max_z_index, depth_value),
-		"walkable": true
-	}
+	return RoomDepth.new(
+		true,
+		lerp(min_z_index, max_z_index, depth_value),
+		lerp(min_scale, max_scale, depth_value)
+	)
 
 func _draw():
-	if show_debug_depth and (Engine.is_editor_hint() or OS.is_debug_build()):
-		if depth_map and show_debug_depth:
+	if GameManager.debug:
+		if depth_map:
 			draw_texture(depth_map, position, Color(1, 1, 1, 1))

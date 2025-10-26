@@ -7,6 +7,10 @@ extends Node
 signal click_registered # Emitted when a click happens, valid or not.
 signal click_processed # Emitted on a valid click with information.
 
+signal clicked_on_ui # Signal emitted with the element clicked on.
+signal clicked_on_interactable # Signal emitted with the interactable clicked on.
+signal clicked_in_room # Signal emitted with the room depth clicked on.
+
 ## Node References
 var ui: Control = null
 var interactables: Array[InteractableArea] = []
@@ -29,29 +33,47 @@ func _process_click() -> void:
 		_mouse_get_scene_pos()
 	)
 	
-	if _process_on_ui(context): # Clicked on UI
-		pass
+	var _clicked_element = _process_on_ui(context)
+	if _clicked_element: # Clicked on UI
+		print("Clicked on UI!")
+		clicked_on_ui.emit(_clicked_element)
+		return
 	
-	if _process_on_interactables(context):
-		pass
-	elif _process_on_rooms(context):
-		pass
+	var _clicked_interactable = _process_on_interactables(context)
+	if _clicked_interactable: # Clicked on an Interactable
+		print("Clicked on Interactables!")
+		clicked_on_interactable.emit(_clicked_interactable)
+		return
 	
-	#click_processed.emit(ClickContext.new(
-		#_mouse_get_screen_pos(),
-		#_mouse_get_scene_pos()
-	#))
+	var _clicked_position = _process_on_room(context)
+	if _process_on_room(context): # Clicked on walkable space in a room
+		print("Clicked in Room! ", _clicked_position.to_string())
+		clicked_in_room.emit(_clicked_position)
+		return
+	
+	# Clicked on nothing in particular.
+	# TODO - Consider adding some kind of feedback at click position?
+	print("Clicked on... NOTHING!!")
+
 
 func _process_on_ui(context: ClickContext) -> bool:
-	return false
+	return UIManager.process_click(context)
 
-func _process_on_interactables(context: ClickContext) -> bool:
-	var was_clicked = false
+func _process_on_interactables(context: ClickContext) -> InteractableArea:
+	for interactable in get_tree().get_nodes_in_group("Interactables"):
+		if interactable is InteractableArea:
+			if interactable.process_click(context):
+				return interactable
 	
-	return was_clicked
+	return null
 
-func _process_on_rooms(context: ClickContext) -> bool:
-	return false
+func _process_on_room(context: ClickContext) -> RoomDepth:
+	if room: # If a room is currently loaded
+		var _depth = room.get_depth_at_position(context.world_position)
+		if _depth.walkable:
+			return _depth
+	
+	return null
 
 func _mouse_get_screen_pos() -> Vector2:
 	return get_viewport().get_mouse_position()

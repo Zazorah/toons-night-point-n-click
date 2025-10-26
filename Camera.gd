@@ -7,14 +7,14 @@ func _init() -> void:
 	anchor_mode = Camera2D.ANCHOR_MODE_FIXED_TOP_LEFT
 
 func _input(event: InputEvent) -> void:
-	if event.is_action("ui_left"):
+	if event.is_action("camera_left"):
 		position.x -= MOVE_SPD
 	
-	elif event.is_action("ui_right"):
+	elif event.is_action("camera_right"):
 		position.x += MOVE_SPD
 	
-	elif event.is_action("ui_up"):
+	elif event.is_action("camera_up"):
 		position.y -= MOVE_SPD
 	
-	elif event.is_action("ui_down"):
+	elif event.is_action("camera_down"):
 		position.y += MOVE_SPD
