@@ -22,6 +22,7 @@ func _init():
 	centered = false
 
 func _ready():
+	GameManager.room = self
 	ClickManager.room = self
 	_generate_navigation_from_depth_map()
 

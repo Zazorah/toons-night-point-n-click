@@ -21,9 +21,6 @@ func _ready() -> void:
 	# Configure NavigationAgent2D
 	nav_agent.path_desired_distance = 8.0  # How close to get to each waypoint
 	nav_agent.target_desired_distance = 8.0  # How close to get to final target
-	
-	# Connect to Click Event
-	# ClickManager.clicked_in_room.connect(_on_room_click)
 
 func _on_room_click(_pos: Vector2) -> void:
 	walk_to_point(_pos)
