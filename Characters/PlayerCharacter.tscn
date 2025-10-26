@@ -1,16 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://csxto7wj3hliq"]
+[gd_scene load_steps=4 format=3 uid="uid://csxto7wj3hliq"]
 
 [ext_resource type="Script" uid="uid://cq400yrk6f301" path="res://Characters/PlayerCharacter.gd" id="1_wwuin"]
 [ext_resource type="SpriteFrames" uid="uid://cooh2yaq7f8i4" path="res://Characters/Assets/Placeholder/ManiacMansion_Wendy.tres" id="2_sahuj"]
+[ext_resource type="Script" uid="uid://df8ub37j8xcoi" path="res://Characters/CharacterAnimator.gd" id="3_p0i8q"]
 
 [node name="PlayerCharacter" type="Node2D"]
 script = ExtResource("1_wwuin")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="CharacterAnimator" type="AnimatedSprite2D" parent="."]
 scale = Vector2(5, 5)
 sprite_frames = ExtResource("2_sahuj")
-animation = &"idle_down"
-frame_progress = 0.24380147
+animation = &"idle_S"
+frame_progress = 0.92222023
 offset = Vector2(0, -27)
+script = ExtResource("3_p0i8q")
+metadata/_custom_type_script = "uid://df8ub37j8xcoi"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

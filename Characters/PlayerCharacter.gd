@@ -15,6 +15,8 @@ var headed_to_target: bool
 @onready var nav_agent = $NavigationAgent2D
 
 func _ready() -> void:
+	super()
+	
 	# Create global reference to self
 	GameManager.player_character = self
 	
@@ -42,8 +44,9 @@ func _physics_process(delta: float) -> void:
 	
 	# Move towards target position
 	var next_position = nav_agent.get_next_path_position()
-	var direction = (next_position - global_position).normalized()  # Fixed: parenthesis was in wrong place
+	var direction = (next_position - global_position).normalized()
 	
+	face_position(next_position)
 	velocity = lerp(velocity, walk_speed, 0.2)
 	
 	# Move at constant speed

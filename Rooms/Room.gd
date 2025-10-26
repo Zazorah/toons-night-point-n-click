@@ -24,7 +24,8 @@ func _init():
 func _ready():
 	GameManager.room = self
 	ClickManager.room = self
-	_generate_navigation_from_depth_map()
+	await _generate_navigation_from_depth_map()
+	room_ready.emit()
 
 ## Bakes a navigation region for the room for Character pathfinding.
 # TODO - Set this up to bake forever as a resource. Tool script or something.
@@ -62,7 +63,7 @@ func _generate_navigation_from_depth_map():
 	navigation_region.navigation_polygon = nav_poly
 
 func get_depth_at_position(pos: Vector2) -> RoomDepth:
-	if not depth_map:
+	if depth_map == null:
 		push_warning("No depth map set for this room.")
 		return RoomDepth.new()
 	

@@ -35,7 +35,6 @@ func _set_room_bounds(_room: Room) -> void:
 	limit_top = 0
 	limit_bottom = max(0, room_size.y - camera_size.y - offset.y)
 
-
 func _physics_process(delta: float) -> void:
 	if not camera_focus_node:
 		return

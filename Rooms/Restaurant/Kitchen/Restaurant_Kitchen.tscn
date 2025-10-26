@@ -2,12 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://d2amag6h8vol8" path="res://Rooms/Restaurant/Kitchen/Restaurant_Kitchen_BG.png" id="1_o2gdj"]
 [ext_resource type="Script" uid="uid://dquyv5i470av2" path="res://Rooms/Room.gd" id="1_ymqju"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jnh3e"]
+[ext_resource type="PackedScene" uid="uid://csxto7wj3hliq" path="res://Characters/PlayerCharacter.tscn" id="3_jnh3e"]
 
 [node name="RestaurantKitchen" type="Sprite2D"]
 texture = ExtResource("1_o2gdj")
 centered = false
 script = ExtResource("1_ymqju")
-depth_map = SubResource("CompressedTexture2D_jnh3e")
 metadata/_custom_type_script = "uid://dquyv5i470av2"
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("3_jnh3e")]
+position = Vector2(631, 884)

@@ -15,9 +15,9 @@ signal clicked_on_interactable # Signal emitted with the interactable clicked on
 signal clicked_in_room # Signal emitted with the room depth clicked on.
 
 ## Node References
-var ui: Control = null
+var ui: Control
 var interactables: Array[InteractableArea] = []
-var room: Room = null
+var room: Room
 
 # Handle any clicks on the game-window if there is no skippable event
 # currently queued.

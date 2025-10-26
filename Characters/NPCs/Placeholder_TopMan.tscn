@@ -8,5 +8,6 @@ script = ExtResource("1_a724v")
 metadata/_custom_type_script = "uid://caq86yioom5j5"
 
 [node name="RingMan" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
 texture = ExtResource("2_iwnhf")
-centered = false
+offset = Vector2(0, -64)

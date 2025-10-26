@@ -14,8 +14,10 @@ func _init(_target: Vector2) -> void:
 
 func execute(_scene_tree: SceneTree) -> void:
 	if GameManager.player_character:
+		GameManager.player_character.play_animation("walk")
 		GameManager.player_character.walk_to_point(target)
 		await GameManager.player_character.arrived_at_target
+		GameManager.player_character.play_animation("idle")
 	else:
 		push_warning("Trying to execute walk event with no set Player Character.")
 		await _scene_tree.create_timer(0.1).timeout
