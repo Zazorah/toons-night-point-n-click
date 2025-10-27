@@ -17,6 +17,9 @@ var player_character: PlayerCharacter:
 		player_character = val
 		player_created.emit(player_character)
 
+# Inventory
+@onready var inventory := Inventory.new()
+
 # Signals
 signal player_created # Emitted when a new PlayerCharacter Node is created.
 signal room_loaded # Emitted when a new Room Node is loaded.

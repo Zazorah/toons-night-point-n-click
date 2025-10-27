@@ -8,6 +8,8 @@
 texture = ExtResource("1_o2gdj")
 centered = false
 script = ExtResource("1_ymqju")
+min_scale = 2.0
+max_scale = 2.0
 metadata/_custom_type_script = "uid://dquyv5i470av2"
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("3_jnh3e")]

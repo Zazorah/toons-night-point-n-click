@@ -15,6 +15,9 @@ const show_debug_depth := true
 
 @onready var navigation_region: NavigationRegion2D
 
+## Audio Properties
+@export var music: AudioStream
+
 ## Signals
 signal room_ready 	# Emitted when room data is finished loading.
 
@@ -22,8 +25,14 @@ func _init():
 	centered = false
 
 func _ready():
+	# Establish Global References
 	GameManager.room = self
 	ClickManager.room = self
+	
+	# Play Music
+	if music:
+		AudioManager.play_music(music)
+	
 	await _generate_navigation_from_depth_map()
 	room_ready.emit()
 

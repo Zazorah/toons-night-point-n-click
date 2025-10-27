@@ -20,7 +20,7 @@ script = ExtResource("4_1rh7x")
 metadata/_custom_type_script = "uid://byxjh6sxqw7f8"
 
 [node name="PlaceholderTopMan" parent="." instance=ExtResource("5_ht4j2")]
-position = Vector2(882, 389)
+position = Vector2(948, 568)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("6_f7rcp")]
 position = Vector2(604, 607)

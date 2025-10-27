@@ -20,11 +20,13 @@ EventManager="*res://EventManager.gd"
 ClickManager="*res://ClickManager.gd"
 UIManager="*res://UI/UIManager.gd"
 GameManager="*res://GameManager.gd"
+AudioManager="*res://Audio/AudioManager.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/initial_screen=1
 window/size/resizable=false
 
 [file_customization]

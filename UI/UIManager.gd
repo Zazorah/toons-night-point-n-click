@@ -12,6 +12,8 @@ var cutscene_player: CutscenePlayer
 func _ready() -> void:
 	# Initialize UI Root
 	ui_root = Control.new()
+	ui_root.clip_contents = false
+	
 	get_tree().root.add_child.call_deferred(ui_root)
 
 func process_click(click_context: ClickContext) -> bool:
@@ -27,7 +29,7 @@ func start_cutscene_player() -> CutscenePlayer:
 		cutscene_player.queue_free()
 	
 	cutscene_player = CUTSCENE_PLAYER.instantiate() as CutscenePlayer
-	ui_root.add_child(cutscene_player)
+	add_child(cutscene_player)
 	
 	return cutscene_player
 

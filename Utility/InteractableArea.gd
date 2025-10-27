@@ -5,9 +5,14 @@ extends Area2D
 
 signal clicked_on
 
+var area_size: Vector2
 var rect: Rect2
 
 const DEFAULT_SIZE := Vector2(128, 128)
+
+func _init(pos, size: Vector2) -> void:
+	position = pos
+	area_size = size
 
 func _ready() -> void:
 	input_event.connect(_on_input_event)
@@ -17,10 +22,11 @@ func _ready() -> void:
 	# Setup collision shape
 	var collision_shape := CollisionShape2D.new() 
 	collision_shape.shape = RectangleShape2D.new()
-	collision_shape.shape.size = DEFAULT_SIZE
-	collision_shape.position += DEFAULT_SIZE / 2
+	collision_shape.shape.size = area_size
 	
-	rect = Rect2(to_global(position), DEFAULT_SIZE)
+	global_position = position
+	
+	rect = Rect2(global_position, collision_shape.shape.size)
 	
 	add_child(collision_shape)
 
@@ -34,7 +40,6 @@ func process_click(context: ClickContext) -> bool:
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("click"):
 		pass # clicked_on.emit()
-
 
 func _exit_tree() -> void:
 	remove_from_group("Interactables")
