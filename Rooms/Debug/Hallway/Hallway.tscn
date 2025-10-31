@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://btys25wc8ehlt" path="res://Rooms/Debug/Hallway/Hallway Depth Map.png" id="2_urjif"]
 [ext_resource type="Script" uid="uid://byxjh6sxqw7f8" path="res://Camera.gd" id="4_1rh7x"]
 [ext_resource type="PackedScene" uid="uid://gjtvxxpak0ym" path="res://Characters/NPCs/Placeholder_TopMan.tscn" id="5_ht4j2"]
-[ext_resource type="PackedScene" uid="uid://csxto7wj3hliq" path="res://Characters/PlayerCharacter.tscn" id="6_f7rcp"]
 [ext_resource type="PackedScene" uid="uid://bvww0mcw4ffsw" path="res://Pickups/Pickup.tscn" id="7_8an5f"]
+[ext_resource type="PackedScene" uid="uid://diyw5kd4ocsiy" path="res://Props/Player Spawn/PlayerSpawn.tscn" id="7_oj0o8"]
 
 [node name="Hallway" type="Sprite2D"]
 texture = ExtResource("2_aoso1")
@@ -23,8 +23,20 @@ metadata/_custom_type_script = "uid://byxjh6sxqw7f8"
 [node name="PlaceholderTopMan" parent="." instance=ExtResource("5_ht4j2")]
 position = Vector2(948, 568)
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("6_f7rcp")]
-position = Vector2(604, 607)
-
 [node name="Pickup" parent="." instance=ExtResource("7_8an5f")]
 position = Vector2(280, 606)
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("7_oj0o8")]
+position = Vector2(747, 683)
+
+[node name="PlayerSpawn2" parent="." instance=ExtResource("7_oj0o8")]
+position = Vector2(660, 533)
+default_spawn = false
+spawn_tag = &"LeftDoor"
+spawn_direction = 1
+
+[node name="PlayerSpawn3" parent="." instance=ExtResource("7_oj0o8")]
+position = Vector2(1134, 603)
+default_spawn = false
+spawn_tag = &"RightDoor"
+spawn_direction = 1

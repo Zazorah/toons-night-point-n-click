@@ -21,6 +21,9 @@ var player_character: PlayerCharacter:
 # Inventory
 @onready var inventory := Inventory.new()
 
+# Transition Handling
+var transition_tag: StringName
+
 # Signals
 signal player_created # Emitted when a new PlayerCharacter Node is created.
 signal room_loaded # Emitted when a new Room Node is loaded.

@@ -3,6 +3,8 @@ extends Sprite2D
 
 ## Node class representing a space that Characters and Entities inhabit.
 
+const PLAYER_SCENE := preload("res://Characters/PlayerCharacter.tscn")
+
 ## State
 const show_debug_depth := true
 
@@ -34,6 +36,8 @@ func _ready():
 		AudioManager.play_music(music)
 	
 	await _generate_navigation_from_depth_map()
+	spawn_player()
+	
 	room_ready.emit()
 
 ## Bakes a navigation region for the room for Character pathfinding.
@@ -70,6 +74,27 @@ func _generate_navigation_from_depth_map():
 	nav_poly.make_polygons_from_outlines()
 	
 	navigation_region.navigation_polygon = nav_poly
+
+func spawn_player() -> void:
+	var pos = _get_spawn_position()
+	var player = PLAYER_SCENE.instantiate()
+	
+	add_child(player)
+	player.global_position = pos
+
+func _get_spawn_position() -> Vector2:
+	var spawn: PlayerSpawn = null
+	
+	for child in get_children():
+		if child is PlayerSpawn:
+			if child.default_spawn or child.spawn_tag == GameManager.transition_tag:
+				spawn = child
+				break
+	
+	if spawn:
+		return spawn.global_position
+	
+	return Vector2.ZERO
 
 func get_depth_at_position(pos: Vector2) -> RoomDepth:
 	if depth_map == null:
