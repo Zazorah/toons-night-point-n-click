@@ -4,7 +4,6 @@ extends Character
 ## Class representing a non-player character.
 ## Stands idle.
 
-@export var interactable_size := Vector2(256, 256)
 @export var cutscene: Cutscene
 
 @onready var clickable_area: Area2D = $ClickableArea

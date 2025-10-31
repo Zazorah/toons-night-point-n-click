@@ -15,14 +15,13 @@ signal clicked_in_room # Signal emitted with the room depth clicked on.
 
 ## Node References
 var ui: Control
-var interactables: Array[InteractableArea] = []
 var room: Room
 
 # Handle any clicks on the game-window if there is no skippable event
 # currently queued.
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("click"):
-		click_registered.emit()		
+		click_registered.emit()
 		if not EventManager.currently_executing:
 			_process_click()
 		else:
@@ -70,12 +69,20 @@ func _process_on_ui(context: ClickContext) -> bool:
 
 func _process_on_interactables(context: ClickContext) -> Node2D:
 	for interactable in get_tree().get_nodes_in_group("Interactables"):
+		var area: Area2D
+
+		# If ClickableArea is a child...
 		if interactable.has_node("ClickableArea"):
-			var area = interactable.get_node("ClickableArea") as Area2D
-			
-			if _point_in_area(context.world_position, area):
-				interactable.call("on_click")
-				return interactable
+			area = interactable.get_node("ClickableArea") as Area2D
+		
+		# If IS it's own ClickableArea...
+		elif interactable is TransitionArea:
+			area = interactable as Area2D
+
+		# Test point in area
+		if _point_in_area(context.world_position, area):
+			interactable.call("on_click")
+			return interactable
 	
 	return null
 

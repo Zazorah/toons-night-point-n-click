@@ -38,6 +38,13 @@ func _initialize_camera() -> void:
 	camera = Camera.new()
 	add_child(camera)
 
+func load_room(new_room: Room) -> void:
+	if room:
+		room.queue_free()
+	
+	room = new_room
+	add_child(room)
+
 func pickup_was_collected(pickup_key: StringName) -> bool:
 	return pickup_collection_status.get(pickup_key, false)
 

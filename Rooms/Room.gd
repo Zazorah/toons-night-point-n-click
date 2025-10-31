@@ -76,25 +76,32 @@ func _generate_navigation_from_depth_map():
 	navigation_region.navigation_polygon = nav_poly
 
 func spawn_player() -> void:
-	var pos = _get_spawn_position()
-	var player = PLAYER_SCENE.instantiate()
+	var spawn = _get_spawn_position()
+	var player = PLAYER_SCENE.instantiate() as PlayerCharacter
+	
+	var pos = Vector2.ZERO
+	if spawn:
+		pos = spawn.global_position
+		player.facing_direction = spawn.spawn_direction
 	
 	add_child(player)
 	player.global_position = pos
 
-func _get_spawn_position() -> Vector2:
+func _get_spawn_position() -> PlayerSpawn:
 	var spawn: PlayerSpawn = null
 	
 	for child in get_children():
 		if child is PlayerSpawn:
-			if child.default_spawn or child.spawn_tag == GameManager.transition_tag:
+			if child.spawn_tag == GameManager.transition_tag:
 				spawn = child
 				break
+			if child.default_spawn and not spawn:
+				spawn = child
 	
 	if spawn:
-		return spawn.global_position
+		return spawn
 	
-	return Vector2.ZERO
+	return null
 
 func get_depth_at_position(pos: Vector2) -> RoomDepth:
 	if depth_map == null:

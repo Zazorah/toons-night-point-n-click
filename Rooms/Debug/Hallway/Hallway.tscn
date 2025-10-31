@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://popp2u4po60n"]
+[gd_scene load_steps=11 format=3 uid="uid://popp2u4po60n"]
 
 [ext_resource type="Script" uid="uid://dquyv5i470av2" path="res://Rooms/Room.gd" id="1_4i1pp"]
 [ext_resource type="Texture2D" uid="uid://blh4ur4l1djmn" path="res://Rooms/Debug/Hallway/Hallway.png" id="2_aoso1"]
@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://gjtvxxpak0ym" path="res://Characters/NPCs/Placeholder_TopMan.tscn" id="5_ht4j2"]
 [ext_resource type="PackedScene" uid="uid://bvww0mcw4ffsw" path="res://Pickups/Pickup.tscn" id="7_8an5f"]
 [ext_resource type="PackedScene" uid="uid://diyw5kd4ocsiy" path="res://Props/Player Spawn/PlayerSpawn.tscn" id="7_oj0o8"]
+[ext_resource type="Script" uid="uid://t84egxtfbkh4" path="res://Props/Transition Area/TransitionArea.gd" id="8_oj0o8"]
+[ext_resource type="PackedScene" uid="uid://c1pkium4e4ts2" path="res://Rooms/Restaurant/Eating Area/Restaurant_EatingArea.tscn" id="9_2u1xv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oj0o8"]
+size = Vector2(104, 256)
 
 [node name="Hallway" type="Sprite2D"]
 texture = ExtResource("2_aoso1")
@@ -40,3 +45,14 @@ position = Vector2(1134, 603)
 default_spawn = false
 spawn_tag = &"RightDoor"
 spawn_direction = 1
+
+[node name="Transition LeftDoor" type="Area2D" parent="."]
+position = Vector2(662, 515)
+script = ExtResource("8_oj0o8")
+room_scene = ExtResource("9_2u1xv")
+transition_tag = &"LeftEntrance"
+metadata/_custom_type_script = "uid://t84egxtfbkh4"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Transition LeftDoor"]
+position = Vector2(-1, -128)
+shape = SubResource("RectangleShape2D_oj0o8")

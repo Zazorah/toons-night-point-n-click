@@ -3,6 +3,7 @@ extends Node
 ## Manager for UIElement instances.
 
 const CUTSCENE_PLAYER := preload("res://Utility/Cutscene/Player/CutscenePlayer.tscn")
+const TRANSITON_PLAYER := preload("res://Utility/Transition Player/TransitionPlayer.tscn")
 
 var ui_root: Control
 var ui_layer: CanvasLayer
@@ -34,6 +35,12 @@ func start_cutscene_player() -> CutscenePlayer:
 
 func stop_cutscene_player() -> void:
 	cutscene_player.do_exit_animation()
+
+func begin_transition() -> TransitionPlayer:
+	var trans_player = TRANSITON_PLAYER.instantiate() as TransitionPlayer
+	ui_layer.add_child(trans_player)
+	
+	return trans_player
 
 func _initialize_test_ui() -> void:
 	var block = UITestSquare.new()

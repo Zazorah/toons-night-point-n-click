@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://jhb85p4glk8v"]
+
+[ext_resource type="Script" uid="uid://b752kob6qllq2" path="res://Utility/Transition Player/TransitionPlayer.gd" id="1_pyv2f"]
+
+[node name="TransitionPlayer" type="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pyv2f")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

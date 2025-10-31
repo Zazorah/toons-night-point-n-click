@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c0gmmeorwagbf" path="res://Rooms/Restaurant/Eating Area/Restaurant_EatingArea_BG.png" id="1_r1onj"]
 [ext_resource type="Texture2D" uid="uid://sijvrvhrdoq6" path="res://Rooms/Restaurant/Eating Area/Restaurant_EatingArea_DepthMap.png" id="3_5g3me"]
 [ext_resource type="AudioStream" uid="uid://bdnlu53l27vs0" path="res://Audio/BGM/BGM_Mystery.mp3" id="4_3iuha"]
-[ext_resource type="PackedScene" uid="uid://csxto7wj3hliq" path="res://Characters/PlayerCharacter.tscn" id="4_5g3me"]
+[ext_resource type="PackedScene" uid="uid://diyw5kd4ocsiy" path="res://Props/Player Spawn/PlayerSpawn.tscn" id="5_3iuha"]
 
 [node name="EatingArea" type="Sprite2D"]
 texture = ExtResource("1_r1onj")
@@ -14,5 +14,11 @@ depth_map = ExtResource("3_5g3me")
 music = ExtResource("4_3iuha")
 metadata/_custom_type_script = "uid://dquyv5i470av2"
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("4_5g3me")]
-position = Vector2(889, 641)
+[node name="Spawn Default" parent="." instance=ExtResource("5_3iuha")]
+position = Vector2(884, 662)
+
+[node name="Spawn LeftEntrance" parent="." instance=ExtResource("5_3iuha")]
+position = Vector2(247, 605)
+default_spawn = false
+spawn_tag = &"LeftEntrance"
+spawn_direction = 1
