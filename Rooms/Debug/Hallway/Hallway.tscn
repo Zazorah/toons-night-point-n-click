@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://popp2u4po60n"]
+[gd_scene load_steps=8 format=3 uid="uid://popp2u4po60n"]
 
 [ext_resource type="Script" uid="uid://dquyv5i470av2" path="res://Rooms/Room.gd" id="1_4i1pp"]
 [ext_resource type="Texture2D" uid="uid://blh4ur4l1djmn" path="res://Rooms/Debug/Hallway/Hallway.png" id="2_aoso1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://byxjh6sxqw7f8" path="res://Camera.gd" id="4_1rh7x"]
 [ext_resource type="PackedScene" uid="uid://gjtvxxpak0ym" path="res://Characters/NPCs/Placeholder_TopMan.tscn" id="5_ht4j2"]
 [ext_resource type="PackedScene" uid="uid://csxto7wj3hliq" path="res://Characters/PlayerCharacter.tscn" id="6_f7rcp"]
+[ext_resource type="PackedScene" uid="uid://bvww0mcw4ffsw" path="res://Pickups/Pickup.tscn" id="7_8an5f"]
 
 [node name="Hallway" type="Sprite2D"]
 texture = ExtResource("2_aoso1")
@@ -24,3 +25,6 @@ position = Vector2(948, 568)
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("6_f7rcp")]
 position = Vector2(604, 607)
+
+[node name="Pickup" parent="." instance=ExtResource("7_8an5f")]
+position = Vector2(280, 606)

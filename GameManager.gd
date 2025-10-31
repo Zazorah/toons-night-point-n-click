@@ -4,6 +4,7 @@ extends Node
 
 # Global State
 var debug := true # Whether or not we're in the debug state.
+var pickup_collection_status: Dictionary[StringName, bool] # Collection status of pickups.
 
 # Global Node References
 var camera: Camera
@@ -33,3 +34,9 @@ func _initialize_camera() -> void:
 	
 	camera = Camera.new()
 	add_child(camera)
+
+func pickup_was_collected(pickup_key: StringName) -> bool:
+	return pickup_collection_status.get(pickup_key, false)
+
+func register_pickup_status(pickup_key: StringName) -> void:
+	pickup_collection_status.set(pickup_key, true)
