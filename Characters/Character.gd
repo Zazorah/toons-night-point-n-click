@@ -102,3 +102,61 @@ func _angle_to_direction(angle: float) -> Direction:
 	
 	push_warning("Something has gone wrong when calculating direction from the angle: ", angle)
 	return Direction.E
+
+
+func find_nearest_walkable_point(offset_distance: float = 0.0, click_position: Vector2 = Vector2.ZERO) -> Vector2:
+	if not GameManager.room:
+		push_error("Character has no room reference!")
+		return global_position
+	
+	var nav_region = GameManager.room.navigation_region
+	if not nav_region:
+		push_error("Room has no NavigationRegion2D!")
+		return global_position
+	
+	var map_rid = nav_region.get_navigation_map()
+	
+	# If no offset needed, return the nearest point to character
+	if offset_distance <= 0.0:
+		return NavigationServer2D.map_get_closest_point(map_rid, global_position)
+	
+	# Calculate preferred direction
+	var preferred_direction: Vector2
+	if click_position != Vector2.ZERO:
+		preferred_direction = (click_position - global_position).normalized()
+	else:
+		var nearest = NavigationServer2D.map_get_closest_point(map_rid, global_position)
+		preferred_direction = (nearest - global_position).normalized()
+	
+	# Try the preferred direction first
+	var best_point = global_position + preferred_direction * offset_distance
+	best_point = NavigationServer2D.map_get_closest_point(map_rid, best_point)
+	
+	# Check if the point is actually at the desired distance
+	var actual_distance = global_position.distance_to(best_point)
+	
+	# If close enough, return it
+	if abs(actual_distance - offset_distance) < offset_distance * 0.3:
+		return best_point
+	
+	# Otherwise, try multiple angles around the character
+	var best_candidate = best_point
+	var best_score = INF
+	
+	for i in range(8):
+		var angle = i * TAU / 8.0
+		var test_direction = preferred_direction.rotated(angle)
+		var test_position = global_position + test_direction * offset_distance
+		var nav_point = NavigationServer2D.map_get_closest_point(map_rid, test_position)
+		
+		# Score based on distance from desired offset and alignment with preferred direction
+		var distance_error = abs(global_position.distance_to(nav_point) - offset_distance)
+		var direction_to_point = (nav_point - global_position).normalized()
+		var alignment = preferred_direction.dot(direction_to_point)
+		var score = distance_error - alignment * 10.0  # Prefer aligned directions
+		
+		if score < best_score:
+			best_score = score
+			best_candidate = nav_point
+	
+	return best_candidate

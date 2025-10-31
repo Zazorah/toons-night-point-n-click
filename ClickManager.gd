@@ -3,7 +3,6 @@ extends Node
 ## Global for registering clicks on the screen and passing info to dependents.
 
 # NOTE - A click is 'valid' if it is not interrupting anything.
-
 signal click_registered # Emitted when a click happens, valid or not.
 
 # NOTE - We're emitting more specific signals, so a generic is probably unneeded.
@@ -69,10 +68,13 @@ func _process_click() -> void:
 func _process_on_ui(context: ClickContext) -> bool:
 	return UIManager.process_click(context)
 
-func _process_on_interactables(context: ClickContext) -> InteractableArea:
+func _process_on_interactables(context: ClickContext) -> Node2D:
 	for interactable in get_tree().get_nodes_in_group("Interactables"):
-		if interactable is InteractableArea:
-			if interactable.process_click(context):
+		if interactable.has_node("ClickableArea"):
+			var area = interactable.get_node("ClickableArea") as Area2D
+			
+			if _point_in_area(context.world_position, area):
+				interactable.call("on_click")
 				return interactable
 	
 	return null
@@ -84,6 +86,21 @@ func _process_on_room(context: ClickContext) -> RoomDepth:
 			return _depth
 	
 	return null
+
+func _point_in_area(point: Vector2, area: Area2D) -> bool:
+	for shape_owner in area.get_shape_owners():
+		var shape = area.shape_owner_get_shape(shape_owner, 0)
+		var transform = area.get_global_transform() * area.shape_owner_get_transform(shape_owner)
+		
+		if shape is RectangleShape2D:
+			var rect_shape = shape as RectangleShape2D
+			var local_point = transform.affine_inverse() * point
+			var extents = rect_shape.size / 2.0
+			return abs(local_point.x) <= extents.x and abs(local_point.y) <= extents.y
+		
+		# TODO - Add more shapes if we need them.
+	
+	return false
 
 func _mouse_get_screen_pos() -> Vector2:
 	return get_viewport().get_mouse_position()
